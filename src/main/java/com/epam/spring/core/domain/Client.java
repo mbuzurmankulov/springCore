@@ -1,4 +1,4 @@
-package com.epam.spring.core;
+package com.epam.spring.core.domain;
 
 import java.io.Serializable;
 
