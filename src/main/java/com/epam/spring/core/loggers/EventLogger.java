@@ -1,5 +1,7 @@
 package com.epam.spring.core.loggers;
 
+import com.epam.spring.core.domain.Event;
+
 public interface EventLogger {
-    void logEvent(String msg);
+    void logEvent(Event event);
 }
