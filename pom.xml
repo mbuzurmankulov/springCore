@@ -32,10 +32,15 @@
 	    <version>1.18.4</version>
 	    <scope>provided</scope>
 	</dependency>
-  <dependency>
-	  <groupId>org.slf4j</groupId>
-	  <artifactId>slf4j-log4j12</artifactId>
-	  <version>1.7.25</version>
-  </dependency>
+	  <dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-log4j12</artifactId>
+		  <version>1.7.25</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>commons-io</groupId>
+		  <artifactId>commons-io</artifactId>
+		  <version>2.6</version>
+	  </dependency>
   </dependencies>
 </project>
