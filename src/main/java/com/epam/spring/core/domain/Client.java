@@ -8,6 +8,7 @@ import lombok.Data;
 public class Client implements Serializable{
 	private String id;
 	private String fullName;
+	private String greeting;
 	
 	public Client(String id, String fullName) {
 		this.id = id;
