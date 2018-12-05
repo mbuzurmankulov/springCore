@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public class LoggingAspect {
     private static final Logger LOG = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Pointcut("execution(* *.logEvent(..))")
+    @Pointcut("execution(* com.epam.spring.core.loggers.*.logEvent(..))")
     private void allLogEventMethods(){}
 
     @Before("allLogEventMethods()")

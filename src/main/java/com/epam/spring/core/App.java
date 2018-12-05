@@ -32,16 +32,16 @@ public class App {
 		ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		App app =  (App)ctx.getBean("app");
 		app.setCtx(ctx);
-		app.meLogEvent("ERROR event for 1 \n", EventType.ERROR);
-		app.meLogEvent("INFO event for 1 \n", EventType.INFO);
-		app.meLogEvent("Default \n", null);
+		app.logEvent("ERROR event for 1 \n", EventType.ERROR);
+		app.logEvent("INFO event for 1 \n", EventType.INFO);
+		app.logEvent("Default \n", null);
 
 		for(Map.Entry entry : app.getStatisticAspect().getStatistics().entrySet()) {
 			System.out.println("logger " + entry.getKey() + " logged " + entry.getValue() + " times");
 		}
 	}
 	
-	private void meLogEvent(String msg, EventType eventType) {
+	private void logEvent(String msg, EventType eventType) {
 		Event event = (Event) ctx.getBean("event");
 		event.setMsg(msg.replaceAll(client.getId(), client.getFullName()));
         EventLogger logger = loggerMap.get(eventType);
