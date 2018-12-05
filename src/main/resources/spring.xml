@@ -2,11 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/util
- 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+ 		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/aop
+ 		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <aop:aspectj-autoproxy />
 
     <import resource="loggers.xml"/>
 
@@ -43,6 +48,7 @@
                 <entry key="ERROR" value-ref="combinedEventLogger"/>
             </map-->
         </constructor-arg>
+        <property name="statisticAspect" ref="statisticAspect"/>
     </bean>
 
     <bean id="event" class="com.epam.spring.core.domain.Event" scope="prototype">
@@ -55,5 +61,8 @@
 
     <bean id="dateFormat" class="java.text.DateFormat"
           factory-method="getDateTimeInstance"/>
+
+    <bean id="loggingAspect" class="com.epam.spring.core.aspects.LoggingAspect"/>
+    <bean id="statisticAspect" class="com.epam.spring.core.aspects.StatisticAspect"/>
 
 </beans>
