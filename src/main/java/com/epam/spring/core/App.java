@@ -4,6 +4,7 @@ import com.epam.spring.core.domain.Client;
 import com.epam.spring.core.domain.Event;
 import com.epam.spring.core.domain.enums.EventType;
 import com.epam.spring.core.loggers.EventLogger;
+import lombok.Setter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,6 +16,9 @@ public class App {
 	private Map<EventType, EventLogger> loggerMap;
 	private Client client;
 
+	@Setter
+	private ConfigurableApplicationContext ctx;
+
 	public App(EventLogger defaultLogger, Map<EventType, EventLogger> loggerMap, Client client){
 	    this.defaultLogger = defaultLogger;
 		this.loggerMap = loggerMap;
@@ -24,13 +28,13 @@ public class App {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		App app =  (App)ctx.getBean("app");
+		app.setCtx(ctx);
 		app.logEvent("ERROR event for 1 \n", EventType.ERROR);
 		app.logEvent("INFO event for 1 \n", EventType.INFO);
 		app.logEvent("Default \n", null);
 	}
 	
 	private void logEvent(String msg, EventType eventType) {
-		ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		Event event = (Event) ctx.getBean("event");
 		event.setMsg(msg.replaceAll(client.getId(), client.getFullName()));
         EventLogger logger = loggerMap.get(eventType);
@@ -39,7 +43,6 @@ public class App {
         }
 		logger
 		.logEvent(event);
-		ctx.close();
 	}
 
 }
