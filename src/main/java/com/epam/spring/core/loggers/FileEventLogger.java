@@ -4,7 +4,6 @@ import com.epam.spring.core.domain.Event;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import java.io.File;
 
@@ -27,7 +26,7 @@ public class FileEventLogger implements EventLogger {
         ClassLoader classLoader = getClass().getClassLoader();
         file = new File(classLoader.getResource(fileName).getFile());
         if(!file.canWrite()){
-            throw new InvalidStateException("file " + fileName + " is now writable!");
+            throw new RuntimeException("file " + fileName + " is now writable!");
         }
     }
 }

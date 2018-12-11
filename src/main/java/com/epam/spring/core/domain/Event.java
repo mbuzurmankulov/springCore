@@ -15,6 +15,11 @@ public class Event {
     private LocalDate date;
     private DateFormat df;
 
+    public Event(Integer id, String msg) {
+        this.id = id;
+        this.msg = msg;
+    }
+
     public Event(LocalDate date, DateFormat df){
         Random random = new Random(100);
         id = random.nextInt();

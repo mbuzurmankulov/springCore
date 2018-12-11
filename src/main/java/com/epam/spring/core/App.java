@@ -48,8 +48,7 @@ public class App {
 		if(logger == null){
 		    logger = defaultLogger;
         }
-		logger
-		.logEvent(event);
+		logger.logEvent(event);
 	}
 
 }
